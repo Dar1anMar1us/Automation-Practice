@@ -14,7 +14,7 @@ jobs:
           - platform: ubuntu-latest
             browser: edge
           - platform: macos-latest
-            browser: firefox
+            browser: [firefox, edge]
     runs-on: ${{ matrix.platform }}
     steps:
     - uses: actions/checkout@v3

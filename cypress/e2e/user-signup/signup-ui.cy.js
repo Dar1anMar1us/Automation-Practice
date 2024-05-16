@@ -20,7 +20,8 @@ describe('User Signup UI', () => {
 
     const currentDate = new Date()
     const emailPrefix = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
-    const email = `${emailPrefix}@yopmail.com`
+    // We use getMilliseconds() to be able to have multiple signups for demo purposes
+    const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com` // `${emailPrefix}@yopmail.com`
     const pass = 'Passw0rd!' //generateRandomPassword(12) For demo purposes we will use a hardcoded password
 
     // Fill the first form
