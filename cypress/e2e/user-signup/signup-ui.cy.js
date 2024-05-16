@@ -55,7 +55,7 @@ describe('User Signup UI', () => {
     cy.get(loginLocators.signUpBtn)
       .click()
 
-      // Fill new account information
+    // Fill new account information
     cy.fixture('users.json').as('users')
 
     cy.get('@users').then($users => {
