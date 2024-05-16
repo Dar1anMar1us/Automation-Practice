@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Dar1anMar1us/Automation-Practice/issues"
   },
-  "homepage": "https://github.com/Dar1anMar1us/Automation-Practice#readme"
+  "homepage": "https://github.com/Dar1anMar1us/Automation-Practice#readme",
+  "devDependencies": {
+    "cypress": "^13.9.0"
+  }
 }
