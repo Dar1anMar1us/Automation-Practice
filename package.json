@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Dar1anMar1us/Automation-Practice#readme",
   "devDependencies": {
     "cypress": "^13.9.0"
+  },
+  "dependencies": {
+    "env-cmd": "^10.1.0"
   }
 }
