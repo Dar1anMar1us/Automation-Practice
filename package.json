@@ -1,0 +1,19 @@
+{
+  "name": "automation-practice",
+  "version": "1.0.0",
+  "description": "Technical test for SQLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Dar1anMar1us/Automation-Practice.git"
+  },
+  "author": "DMC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dar1anMar1us/Automation-Practice/issues"
+  },
+  "homepage": "https://github.com/Dar1anMar1us/Automation-Practice#readme"
+}
