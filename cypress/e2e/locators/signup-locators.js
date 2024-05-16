@@ -1,0 +1,20 @@
+export const signUpLocators = {
+    maleCheckbox: "#id_gender1",
+    femaleCheckbox: "#id_gender2",
+    passwordField: "[data-qa=password]",
+    dateOfBirthDay: "[data-qa=days]",
+    dateOfBirthMonth: "[data-qa=months]",
+    dateOfBirthYear: "[data-qa=years]",
+    newsletterCheckBox: "#newsletter",
+    specialOffersCheckBox: "#optin",
+    firstNameField: "[data-qa=first_name]",
+    lastNameField: "[data-qa=last_name]",
+    companyField: "[data-qa=company]",
+    addressField: "[data-qa=address]",
+    countryField: "[data-qa=country]",
+    stateField: "[data-qa=state]",
+    cityField: "[data-qa=city]",
+    zipCodeField: "[data-qa=zipcode]",
+    mobileNumber: "[data-qa=mobile_number]",
+    submitBtn: "[data-qa=create-account]"
+}
