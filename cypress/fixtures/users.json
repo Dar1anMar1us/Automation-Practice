@@ -1,0 +1,20 @@
+{
+  "default": {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "title": "Mr",
+    "birth_date": "10",
+    "birth_month": "05",
+    "birth_year": "1990",
+    "firstname": "John",
+    "lastname": "Doe",
+    "company": "Acme Inc.",
+    "address1": "123 Main St",
+    "address2": "Apt 4B",
+    "country": "United States",
+    "zipcode": "12345",
+    "state": "California",
+    "city": "Los Angeles",
+    "mobile_number": "1234567890"
+  }
+}
