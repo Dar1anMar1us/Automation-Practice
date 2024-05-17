@@ -43,3 +43,9 @@ jobs:
     - run: npm ci
     - name: Running tests on Chrome
       run: npx cypress run --browser firefox
+    - name: Archive users.json
+        if: inputs.persist_users
+        uses: actions/upload-artifact@v3
+        with:
+          name: newCreatedUsers
+          path: users.txt

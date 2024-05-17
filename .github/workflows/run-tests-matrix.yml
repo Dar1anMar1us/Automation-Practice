@@ -33,3 +33,9 @@ jobs:
     - run: npm ci
     - name: Running on Platform = ${{ matrix.platform }} Browser = ${{ matrix.browser }}
       run: npx cypress run --browser ${{ matrix.browser }}
+    - name: Archive users.json
+        if: inputs.persist_users
+        uses: actions/upload-artifact@v3
+        with:
+          name: newCreatedUsers-${{ matrix.platform }}-${{ matrix.browser }}
+          path: users.txt

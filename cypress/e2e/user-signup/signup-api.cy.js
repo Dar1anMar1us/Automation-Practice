@@ -49,10 +49,10 @@ describe('Signs up with a new user via API', () => {
             const defaultUser = $users["default"]
             const sequentialRun = Cypress.env('SEQUENTIAL_RUN') || null
             const currentDate = new Date()
-            const emailPrefix = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+            const emailPrefix = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`
             // We use getMilliseconds() to be able to have multiple signups for demo purposes using paralel execution
             // const email = sequentialRun ? `${emailPrefix}@yopmail.com` : `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
-            const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
+            const email = `${emailPrefix}@yopmail.com`
             const pass = generateRandomPassword(12)
             cy.exec(`curl -X POST -H "Content-Type: multipart/form-data" \
                 -F "name=John Doe" \
@@ -87,6 +87,13 @@ describe('Signs up with a new user via API', () => {
                     !Cypress.env('LAST_IN_SEQUENCE') && cy.deleteUser(email, pass)
                 } else {
                     cy.deleteUser(email, pass)
+                }
+            } else {
+                // We store the new credentials inside an artifact for download later
+                if (sequentialRun) {
+                    !Cypress.env('LAST_IN_SEQUENCE') && cy.exec(`echo ${email}:${pass} > users.txt`)
+                } else {
+                    cy.exec(`echo ${email}:${pass} > users.txt`)
                 }
             }
         })
