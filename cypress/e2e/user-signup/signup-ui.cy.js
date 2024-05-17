@@ -22,7 +22,8 @@ describe('User Signup UI', () => {
     const currentDate = new Date()
     const emailPrefix = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
     // We use getMilliseconds() to be able to have multiple signups for demo purposes using paralel execution
-    const email = sequentialRun ? `${emailPrefix}@yopmail.com` : `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
+    // const email = sequentialRun ? `${emailPrefix}@yopmail.com` : `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
+    const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
     const pass = sequentialRun ? 'Passw0rd!' : generateRandomPassword(12)
 
     // Fill the first form
@@ -129,7 +130,7 @@ describe('User Signup UI', () => {
       // Delete the test user from the database
       if (!Cypress.env('PERSIST_USERS')) {
         if (sequentialRun) {
-          Cypress.env('LAST_IN_SEQUENCE') && cy.deleteUser(email, pass)
+          !Cypress.env('LAST_IN_SEQUENCE') && cy.deleteUser(email, pass)
         } else {
           cy.deleteUser(email, pass)
         }

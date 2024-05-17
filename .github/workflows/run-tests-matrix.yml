@@ -1,6 +1,16 @@
 name: Run tests in a Matrix
 on:
   workflow_dispatch:
+    inputs:
+      persist_users:
+        description: "Persist test users in database"
+        required: false
+        default: false
+        type: boolean
+
+env:
+  CYPRESS_PERSIST_USERS: ${{ inputs.persist_users }}
+
 jobs:
   build:
     strategy:
