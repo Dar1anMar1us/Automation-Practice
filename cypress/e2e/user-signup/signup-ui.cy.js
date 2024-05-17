@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
-import { 
-  homeNavLocators, 
+import {
+  homeNavLocators,
   loginLocators,
-  signUpLocators 
+  signUpLocators
 } from "../locators"
 import { generateRandomPassword } from "../utils/common"
 
@@ -18,11 +18,12 @@ describe('User Signup UI', () => {
       .find(homeNavLocators.signUpLogInBtn)
       .click()
 
+    const sequentialRun = Cypress.env('SEQUENTIAL_RUN')
     const currentDate = new Date()
     const emailPrefix = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
-    // We use getMilliseconds() to be able to have multiple signups for demo purposes
-    const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com` // `${emailPrefix}@yopmail.com`
-    const pass = 'Passw0rd!' //generateRandomPassword(12) For demo purposes we will use a hardcoded password
+    // We use getMilliseconds() to be able to have multiple signups for demo purposes using paralel execution
+    const email = sequentialRun ? `${emailPrefix}@yopmail.com` : `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
+    const pass = sequentialRun ? 'Passw0rd!' : generateRandomPassword(12)
 
     // Fill the first form
     cy.get(loginLocators.loginForm)
@@ -60,9 +61,9 @@ describe('User Signup UI', () => {
     cy.fixture('users.json').as('users')
 
     cy.get('@users').then($users => {
-      const { 
-        state, 
-        city, 
+      const {
+        state,
+        city,
         company,
         address1,
         zipcode,
@@ -74,25 +75,25 @@ describe('User Signup UI', () => {
 
       cy.get(signUpLocators.maleCheckbox)
         .click()
-  
+
       cy.get(signUpLocators.passwordField)
         .type(pass)
-  
+
       cy.get(signUpLocators.dateOfBirthDay)
         .select(11)
-  
+
       cy.get(signUpLocators.dateOfBirthMonth)
         .select(5)
-  
+
       cy.get(signUpLocators.dateOfBirthYear)
         .select(35)
-  
+
       cy.get(signUpLocators.newsletterCheckBox)
         .click()
-  
+
       cy.get(signUpLocators.specialOffersCheckBox)
         .click()
-  
+
       cy.get(signUpLocators.firstNameField)
         .type(firstname)
 
@@ -124,6 +125,15 @@ describe('User Signup UI', () => {
         .click()
 
       cy.get('[data-qa=account-created]')
+
+      // Delete the test user from the database
+      if (!Cypress.env('PERSIST_USERS')) {
+        if (sequentialRun) {
+          Cypress.env('LAST_IN_SEQUENCE') && cy.deleteUser(email, pass)
+        } else {
+          cy.deleteUser(email, pass)
+        }
+      }
 
     })
 

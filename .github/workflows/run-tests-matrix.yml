@@ -1,4 +1,4 @@
-name: Matrix with Cypress
+name: Run tests in a Matrix
 on:
   workflow_dispatch:
 jobs:
