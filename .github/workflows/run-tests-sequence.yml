@@ -1,0 +1,51 @@
+name: Run tests Sequentially
+on:
+  workflow_dispatch:
+    inputs:
+      persist_users:
+        description: "Persist test users in database"
+        required: false
+        default: false
+        type: boolean
+
+env:
+  CYPRESS_SEQUENTIAL_RUN: true
+  CYPRESS_PERSIST_USERS: ${{ inputs.persist_users }}
+
+jobs:
+  chrome-execution:
+    name: Execute tests Chrome
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: npm ci
+    - name: Running tests on Chrome
+      run: npx cypress run --browser chrome
+
+  edge-execution:
+    name: Execute tests Edge
+    runs-on: windows-latest
+    needs: chrome-execution
+    steps:
+    - uses: actions/checkout@v3
+    - run: npm ci
+    - name: Running tests on Edge
+      run: npx cypress run --browser edge
+
+  firefox-execution:
+    name: Execute tests Firefox
+    runs-on: ubuntu-latest
+    needs: edge-execution
+    env:
+      CYPRESS_LAST_IN_SEQUENCE: true
+    steps:
+    - uses: actions/checkout@v3
+    - run: npm ci
+    - name: Running tests on Chrome
+      run: npx cypress run --browser firefox
+    - name: Archive users.json
+      if: inputs.persist_users
+      uses: actions/upload-artifact@v3
+      with:
+        name: newCreatedUsers
+        path: users.txt
