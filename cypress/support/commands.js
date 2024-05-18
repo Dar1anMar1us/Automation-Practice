@@ -25,18 +25,20 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('deleteUser', (email, password) => {
+    const formData = new FormData()
+    formData.append('email', email)
+    formData.append('password', password)
     cy.request({
         method: 'DELETE',
         url: 'https://automationexercise.com/api/deleteAccount',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data',
+            'Accept-Encoding': 'deflate, gzip;q=1.0, *;q=0.5'
         },
-        body: {
-            email,
-            password
-        }
+        body: formData,
     })
     .then((response) => {
+        console.info("Delete email: ", response)
         expect(response.status).to.eq(200)
         return response;
     })
