@@ -49,9 +49,10 @@ describe('Signs up with a new user via API', () => {
             const defaultUser = $users["default"]
             const sequentialRun = Cypress.env('SEQUENTIAL_RUN') || null
             const currentDate = new Date()
-            const emailPrefix = `${currentDate.getDate()}${currentDate.getMonth() + 1}${currentDate.getFullYear()}`
-            // We use getMilliseconds() to be able to have multiple signups for demo purposes using paralel execution
-            const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
+            const emailPrefix = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+            // We use getMilliseconds() to be able to have multiple signups for demo purposes using paralel execution with DB persist.
+            // const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
+            const email = `${emailPrefix}@yopmail.com`
             const pass = generateRandomPassword(12)
             cy.exec(`curl -X POST -H "Content-Type: multipart/form-data" \
                 -F "name=John Doe" \
