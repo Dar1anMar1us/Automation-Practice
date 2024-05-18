@@ -49,7 +49,7 @@ describe('Signs up with a new user via API', () => {
             const defaultUser = $users["default"]
             const sequentialRun = Cypress.env('SEQUENTIAL_RUN') || null
             const currentDate = new Date()
-            const emailPrefix = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+            const emailPrefix = `${currentDate.getFullYear()}_${currentDate.getMonth() + 1}_${currentDate.getDate()}`
             // We use getMilliseconds() to be able to have multiple signups for demo purposes using paralel execution with DB persist.
             // const email = `${emailPrefix}-${currentDate.getMilliseconds()}@yopmail.com`
             const email = `${emailPrefix}@yopmail.com`
@@ -87,11 +87,11 @@ describe('Signs up with a new user via API', () => {
             } else {
                 // We store the new credentials inside an artifact for download later
                 if (sequentialRun) {
-                    Cypress.env('LAST_IN_SEQUENCE') ?
-                        cy.exec(`echo '${email}:${pass}' > users.txt`) :
+                    Cypress.env('LAST_IN_SEQUENCE') &&
+                        cy.exec(`echo '${email}:${pass}' > users.txt`)
                         cy.deleteUser(email, pass)
                 } else {
-                    cy.exec(`echo '${email}:${pass}' > users.txt`)
+                    cy.deleteUser(email, pass)
                 }
             }
         })
