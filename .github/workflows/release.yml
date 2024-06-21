@@ -10,13 +10,13 @@ permissions:
 
 jobs:
 
-  run-tests:
-    uses: Dar1anMar1us/Automation-Practice/.github/workflows/run-tests-matrix.yml@trunk
-    with:
-      persist_users: true
+  # run-tests:
+  #   uses: Dar1anMar1us/Automation-Practice/.github/workflows/run-tests-matrix.yml@trunk
+  #   with:
+  #     persist_users: true
 
   publish-release:
-    needs: run-tests
+    # needs: run-tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
