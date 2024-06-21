@@ -1,0 +1,19 @@
+name: Context matrices creation
+on:
+  repository_dispatch:
+    types:
+      - test
+
+permissions:
+  contents: read
+ 
+jobs:
+  example_matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ${{ github.event.client_payload.versions }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
