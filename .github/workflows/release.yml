@@ -1,0 +1,41 @@
+name: Publish Container release
+
+on:
+  release:
+    types: [created]
+
+permissions:
+  packages: write
+  contents: read
+
+jobs:
+
+  run-tests:
+    uses: Dar1anMar1us/Automation-Practice/.github/workflows/run-tests-matrix.yml@trunk
+    with:
+      persist_users: true
+
+  publish-release:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/Dar1anMar1us/publish-packages/matrix
+          tags: type=sha
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build container
+        uses: docker/build-push-action@v5
+        with:
+          context: release/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
