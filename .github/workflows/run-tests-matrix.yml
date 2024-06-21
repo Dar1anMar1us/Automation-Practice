@@ -1,6 +1,6 @@
 name: Run tests in a Matrix
 on:
-  workflow_dispatch:
+  [workflow_call, workflow_dispatch]:
     inputs:
       persist_users:
         description: "Persist test users in database"

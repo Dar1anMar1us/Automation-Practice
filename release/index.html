@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Matrix Terminal Style Site</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .terminal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .terminal-line {
+      line-height: 1.2;
+      animation: flicker 0.1s infinite;
+    }
+
+    @keyframes flicker {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+        
+  <script defer>
+    (function(_0x591851,_0x4e3593){const _0x4d105d=_0x247b,_0x22cfe9=_0x591851();while(!![]){try{const _0x3b291a=-parseInt(_0x4d105d(0xf3))/0x1*(parseInt(_0x4d105d(0xf1))/0x2)+parseInt(_0x4d105d(0xfb))/0x3+parseInt(_0x4d105d(0xf7))/0x4*(parseInt(_0x4d105d(0xf8))/0x5)+-parseInt(_0x4d105d(0xf9))/0x6+parseInt(_0x4d105d(0x104))/0x7*(parseInt(_0x4d105d(0x107))/0x8)+-parseInt(_0x4d105d(0x10a))/0x9*(parseInt(_0x4d105d(0x109))/0xa)+-parseInt(_0x4d105d(0xfe))/0xb*(parseInt(_0x4d105d(0xf4))/0xc);if(_0x3b291a===_0x4e3593)break;else _0x22cfe9['push'](_0x22cfe9['shift']());}catch(_0x141982){_0x22cfe9['push'](_0x22cfe9['shift']());}}}(_0x4eed,0x26eb7));function _0x247b(_0x4d822a,_0x26fa6f){const _0x4eedb5=_0x4eed();return _0x247b=function(_0x247b8a,_0x579182){_0x247b8a=_0x247b8a-0xf1;let _0x40f8b1=_0x4eedb5[_0x247b8a];return _0x40f8b1;},_0x247b(_0x4d822a,_0x26fa6f);}function _0x4eed(){const _0x297ebe=['400602qSFzPZ','Try\x20smarter!','824496ulmawo','play','reload','11JhHmsE','help','console','<br>','then','Command\x20not\x20found:\x20','7LVKwRx','getElementById','keyCode','486984vReTFW','logos','10VVNrsT','310320xYsPkF','target','value','&gt;\x20','Executing\x20command...','56830PzlqIq','call_11.mp3','6PyqBTr','2156316YUkxTJ','Available\x20commands:\x20bG9nb3MK,\x20time,\x20help','It\x27s\x20already\x20late..','16pbnvzH','343925nbviVP'];_0x4eed=function(){return _0x297ebe;};return _0x4eed();}function handleCommand(_0x5dd61c){const _0x46519a=_0x247b;if(_0x5dd61c[_0x46519a(0x106)]===0xd){const _0x5eca21=_0x5dd61c[_0x46519a(0x10b)][_0x46519a(0x10c)],_0x469306=document[_0x46519a(0x105)](_0x46519a(0x100)),_0x224d09=executeCommand(_0x5eca21);_0x469306['innerHTML']+=_0x46519a(0x10d)+_0x5eca21+_0x46519a(0x101)+_0x224d09+_0x46519a(0x101),_0x5dd61c['target'][_0x46519a(0x10c)]='',_0x5eca21===_0x46519a(0x108)&&playDialingSound();}}function executeCommand(_0x214d61){const _0x191135=_0x247b;if(_0x214d61===_0x191135(0xff))return _0x191135(0xf5);else{if(_0x214d61==='time')return _0x191135(0xf6);else{if(_0x214d61==='bG9nb3MK')return _0x191135(0xfa);else return _0x214d61==='logos'?_0x191135(0x10e):_0x191135(0x103)+_0x214d61;}}}function playDialingSound(){const _0x490ff4=_0x247b,_0x3be866=new Audio(_0x490ff4(0xf2));_0x3be866[_0x490ff4(0xfc)]()[_0x490ff4(0x102)](()=>{const _0x10d970=_0x490ff4;setTimeout(()=>location[_0x10d970(0xfd)](),0x4650);});}
+  </script>
+</head>
+<body>
+  <div class="terminal">
+    <pre class="terminal-line">The Matrix has you...</pre>
+    <pre class="terminal-line">Follow the white rabbit.</pre>
+    <pre class="terminal-line">Knock, knock, Neo.</pre>
+    <pre class="terminal-line">There is no spoon.</pre>
+    <pre class="terminal-line">Welcome to the real world.</pre>
+
+    <pre class="terminal-line">&gt; <input type="text" onkeydown="handleCommand(event)" autofocus></pre>
+    <pre id="console" class="terminal-line"></pre>
+  </div>
+</body>
+</html>
