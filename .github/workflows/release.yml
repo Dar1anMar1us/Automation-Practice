@@ -36,6 +36,7 @@ jobs:
       - name: Build container
         uses: docker/build-push-action@v5
         with:
-          context: release/Dockerfile
+          context: .
+          file: {context}/release/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
