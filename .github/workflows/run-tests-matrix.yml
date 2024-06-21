@@ -1,6 +1,13 @@
 name: Run tests in a Matrix
 on:
-  [workflow_call, workflow_dispatch]:
+  workflow_call:
+    inputs:
+      persist_users:
+        description: "Persist test users in database"
+        required: false
+        default: false
+        type: boolean
+  workflow_dispatch:
     inputs:
       persist_users:
         description: "Persist test users in database"
